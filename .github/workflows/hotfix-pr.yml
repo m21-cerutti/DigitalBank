@@ -1,0 +1,12 @@
+name: Hotfix PR
+on:
+  pull_request:
+    branches:
+      - develop
+    types: [opened, synchronize, reopened]
+jobs:
+  hotfix_pr:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: echo "Running PR workflow for hotfix → develop"
