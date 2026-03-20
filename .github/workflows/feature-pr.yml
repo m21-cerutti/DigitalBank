@@ -1,0 +1,12 @@
+name: Feature PR
+on:
+  pull_request:
+    branches:
+      - develop
+    types: [opened, synchronize, reopened]
+jobs:
+  feature_pr:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: echo "Running PR workflow for feature → develop"

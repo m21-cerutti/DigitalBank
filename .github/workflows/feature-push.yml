@@ -1,0 +1,11 @@
+name: Feature Push
+on:
+  push:
+    branches:
+      - 'feature/*'
+jobs:
+  feature_push:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: echo "Running PUSH workflow for feature branch"
