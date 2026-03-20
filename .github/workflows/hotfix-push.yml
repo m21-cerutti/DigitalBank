@@ -1,0 +1,11 @@
+name: Hotfix Push
+on:
+  push:
+    branches:
+      - 'hotfix/*'
+jobs:
+  hotfix_push:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: echo "Running PUSH workflow for hotfix branch"
