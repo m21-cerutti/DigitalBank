@@ -1,11 +1,13 @@
+
 name: Bugfix Push
 on:
   push:
     branches:
       - 'bugfix/*'
+
 jobs:
-  bugfix_push:
+  bugfix_push_job:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: echo "Running PUSH workflow for bugfix branch"
+      - run: echo "Running PUSH workflow for bugfix/*"
