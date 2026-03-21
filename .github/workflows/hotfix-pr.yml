@@ -1,12 +1,18 @@
+
 name: Hotfix PR
 on:
   pull_request:
     branches:
       - develop
     types: [opened, synchronize, reopened]
+
+env:
+  IS_HOTFIX: ${{ startsWith(github.head_ref, 'hotfix/') }}
+
 jobs:
-  hotfix_pr:
+  test_hotfix:
+    if: env.IS_HOTFIX == 'true'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: echo "Running PR workflow for hotfix → develop"
+      - run: echo "Running PR for hotfix/*"
