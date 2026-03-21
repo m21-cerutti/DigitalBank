@@ -3,6 +3,7 @@ name: Hotfix PR
 on:
   pull_request:
     branches:
+      - main
       - develop
     types: [opened, synchronize, reopened]
 
