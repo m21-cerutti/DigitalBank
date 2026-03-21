@@ -10,10 +10,40 @@ jobs:
   call-guard:
     uses: ./.github/workflows/guard.yml
 
-  test_feature:
-    needs: call-guard
+  is_feature_pr:
+    needs: [call-guard]
     if: needs.call-guard.outputs.IS_FEATURE == 'true'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - run: echo "Running PR workflow for feature/*"
+
+  feature_linter_check_pr:
+    needs: is_feature_pr
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: echo "Feature PR Linter Check"
+
+  feature_secret_check_pr:
+    needs: is_feature_pr
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: echo "Feature PR Secret Check"
+
+  feature_unit_tests_pr:
+    needs: [feature_linter_check_pr, feature_secret_check_pr]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: echo "Feature PR Unit Tests"
+
+  feature_integration_tests_pr:
+    needs: feature_unit_tests_pr
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: echo "Feature PR Integration Tests"
+
+  

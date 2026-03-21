@@ -1,0 +1,22 @@
+
+name: Develop Daily
+
+on:
+  schedule:
+    - cron: '30 05 * * *'
+  workflow_dispatch:
+
+jobs:
+  checkout_develop:
+    name: Dev - Checkout develop (daily)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: git checkout origin develop
+
+  dev_integration_tests_api_daily:
+    name: Dev - Integration Tests API (daily)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: echo "Daily Integration Tests API (Develop)"
