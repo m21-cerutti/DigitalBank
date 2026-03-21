@@ -6,13 +6,14 @@ on:
       - develop
     types: [opened, synchronize, reopened]
 
-env:
-  IS_HOTFIX: ${{ startsWith(github.head_ref, 'hotfix/') }}
-
 jobs:
+  call-guard:
+    uses: ./.github/workflows/guard.yml
+
   test_hotfix:
-    if: env.IS_HOTFIX == 'true'
+    needs: call-guard
+    if: needs.call-guard.outputs.IS_HOTFIX == 'true'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: echo "Running PR for hotfix/*"
+      - run: echo "Running PR workflow for hotfix/*"

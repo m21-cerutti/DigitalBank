@@ -1,0 +1,38 @@
+
+
+name: Guard Job
+
+on:
+  workflow_call:
+    outputs:
+      REPO:
+        value: ${{ jobs.branch_env.outputs.REPO }}
+      BRANCH:
+        value: ${{ jobs.branch_env.outputs.BRANCH }}
+      COMMIT:
+        value: ${{ jobs.branch_env.outputs.COMMIT }}
+      IS_FEATURE:
+        value: ${{ jobs.branch_env.outputs.IS_FEATURE }}
+      IS_BUGFIX:
+        value: ${{ jobs.branch_env.outputs.IS_BUGFIX }}
+      IS_HOTFIX:
+        value: ${{ jobs.branch_env.outputs.IS_HOTFIX }}
+      IS_RELEASE:
+        value: ${{ jobs.branch_env.outputs.IS_RELEASE }}
+      IS_DEVELOP:
+        value: ${{ jobs.branch_env.outputs.IS_DEVELOP }}
+
+jobs:
+  branch_env:
+    runs-on: ubuntu-latest
+    outputs:
+      REPO: ${{ github.event.repository.name }}
+      BRANCH: ${{ github.head_ref || github.ref_name }}
+      COMMIT: ${{ github.sha }}
+      IS_FEATURE: ${{ startsWith(github.head_ref, 'feature/') }}
+      IS_BUGFIX: ${{ startsWith(github.head_ref, 'bugfix/') }}
+      IS_HOTFIX: ${{ startsWith(github.head_ref, 'hotfix/') }}
+      IS_RELEASE: ${{ startsWith(github.head_ref, 'release/') }}
+      IS_DEVELOP: ${{ startsWith(github.head_ref, 'develop') }}
+    steps:
+      - run: echo "Branch environment collected"
