@@ -1,10 +1,10 @@
 <!-- omit from toc -->
-# Pipeline de Test
+# Pipeline
 
-- [Pipeleine de test complet (à implémenter)](#pipeleine-de-test-complet-à-implémenter)
+- [Pipeline complet (à implémenter)](#pipeline-complet-à-implémenter)
 
 
-## Pipeleine de test complet (à implémenter)
+## Pipeline complet (à implémenter)
 
 ```mermaid
 ---
@@ -87,8 +87,6 @@ flowchart TB
     direction TB
         SD["Small start"]
         D0["Monitoring (down)"]
-        D3["Smoke Tests"]
-        D4["System tests"]
         D1["Integrationt Tests  (API)"]
         D6["Performance Tests (API)"]
         D8["Smoke Tests"]
@@ -134,9 +132,7 @@ flowchart TB
     F2 --> F3
     F3 --> F4
     FEATURE == merge ==> DEV
-    SD -- pull request<br>develop → release --> D3
     SD -- daily --> D1
-    D3 --> D4
     D1 --> D6
     DEV == branch ==> PREPROD
     SR -- pull request<br>release → master --> R4
@@ -251,19 +247,19 @@ flowchart TB
     style PUSH fill:transparent,stroke:none
     linkStyle 12 stroke:#2962FF,fill:none
     linkStyle 17 stroke:#2962FF,fill:none
-    linkStyle 22 stroke:#2962FF,fill:none
-    linkStyle 32 stroke:#2962FF,fill:none
-    linkStyle 33 stroke:#2962FF,fill:none
-    linkStyle 35 stroke:#FFFFFF,fill:none
-    linkStyle 41 stroke:#FF6D00,fill:none
-    linkStyle 42 stroke:#FF6D00,fill:none
-    linkStyle 43 stroke:#D50000,fill:none
-    linkStyle 44 stroke:#D50000,fill:none
+    linkStyle 20 stroke:#2962FF,fill:none
+    linkStyle 30 stroke:#2962FF,fill:none
+    linkStyle 31 stroke:#2962FF,fill:none
+    linkStyle 33 stroke:#FFFFFF,fill:none
+    linkStyle 39 stroke:#FF6D00,fill:none
+    linkStyle 40 stroke:#FF6D00,fill:none
+    linkStyle 41 stroke:#D50000,fill:none
+    linkStyle 42 stroke:#D50000,fill:none
+    linkStyle 46 stroke:#D50000,fill:none
+    linkStyle 47 stroke:#D50000,fill:none
     linkStyle 48 stroke:#D50000,fill:none
-    linkStyle 49 stroke:#D50000,fill:none
-    linkStyle 50 stroke:#D50000,fill:none
-    linkStyle 62 stroke:#2962FF,fill:none
-    linkStyle 63 stroke:#D50000,fill:none
-    linkStyle 64 stroke:#FF6D00,fill:none
-    linkStyle 65 stroke:#2962FF
+    linkStyle 60 stroke:#2962FF,fill:none
+    linkStyle 61 stroke:#D50000,fill:none
+    linkStyle 62 stroke:#FF6D00,fill:none
+    linkStyle 63 stroke:#2962FF,fill:none
 ```

@@ -10,10 +10,24 @@ jobs:
   call-guard:
     uses: ./.github/workflows/guard.yml
 
-  test_release:
-    needs: call-guard
+  is_release_pr:
+    needs: [call-guard]
     if: needs.call-guard.outputs.IS_RELEASE == 'true'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - run: echo "Running PR workflow for release/*"
+
+  release_smoke_tests_pr:
+    needs: is_release_pr
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: echo "Release PR Smoke Tests"
+
+  release_system_tests_pr:
+    needs: release_smoke_tests_pr
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: echo "Release PR System Tests"
