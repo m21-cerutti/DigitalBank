@@ -6,13 +6,14 @@ on:
       - develop
     types: [opened, synchronize, reopened]
 
-env:
-  IS_BUGFIX: ${{ startsWith(github.head_ref, 'bugfix/') }}
-
 jobs:
+  call-guard:
+    uses: ./.github/workflows/guard.yml
+
   test_bugfix:
-    if: env.IS_BUGFIX == 'true'
+    needs: call-guard
+    if: needs.call-guard.outputs.IS_BUGFIX == 'true'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: echo "Running PR for bugfix/*"
+      - run: echo "Running PR workflow for bugfix/*"

@@ -6,13 +6,14 @@ on:
       - master
     types: [opened, synchronize, reopened]
 
-env:
-  IS_RELEASE: ${{ startsWith(github.head_ref, 'release/') }}
-
 jobs:
+  call-guard:
+    uses: ./.github/workflows/guard.yml
+
   test_release:
-    if: env.IS_RELEASE == 'true'
+    needs: call-guard
+    if: needs.call-guard.outputs.IS_RELEASE == 'true'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: echo "Running PR for release/*"
+      - run: echo "Running PR workflow for release/*"
