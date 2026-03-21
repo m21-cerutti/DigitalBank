@@ -1,4 +1,3 @@
 # GitHub Workflows – Push & PR Separated
 
-Workflows are now separated between PUSH and PR events.
-File names no longer use the ci- prefix.
+Pour la vision global voire le document de [Pipeline](../docs/Pipeline.md).

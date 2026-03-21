@@ -1,10 +1,10 @@
 <!-- omit from toc -->
-# Pipeline de Test
+# Pipeline
 
-- [Pipeleine de test complet (à implémenter)](#pipeleine-de-test-complet-à-implémenter)
+- [Pipeline complet (à implémenter)](#pipeline-complet-à-implémenter)
 
 
-## Pipeleine de test complet (à implémenter)
+## Pipeline complet (à implémenter)
 
 ```mermaid
 ---
