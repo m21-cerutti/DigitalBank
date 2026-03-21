@@ -6,13 +6,14 @@ on:
       - develop
     types: [opened, synchronize, reopened]
 
-env:
-  IS_FEATURE: ${{ startsWith(github.head_ref, 'feature/') }}
-
 jobs:
+  call-guard:
+    uses: ./.github/workflows/guard.yml
+
   test_feature:
-    if: env.IS_FEATURE == 'true'
+    needs: call-guard
+    if: needs.call-guard.outputs.IS_FEATURE == 'true'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: echo "Running PR for feature/*"
+      - run: echo "Running PR workflow for feature/*"
