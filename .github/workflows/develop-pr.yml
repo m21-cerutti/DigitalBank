@@ -1,0 +1,18 @@
+
+name: Develop PR
+on:
+  pull_request:
+    branches:
+      - release
+    types: [opened, synchronize, reopened]
+
+env:
+  IS_DEVELOP: ${{ startsWith(github.head_ref, 'develop') }}
+
+jobs:
+  test_develop:
+    if: env.IS_DEVELOP == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: echo "Running PR for develop/*"

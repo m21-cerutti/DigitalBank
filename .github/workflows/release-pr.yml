@@ -1,0 +1,18 @@
+
+name: Release PR
+on:
+  pull_request:
+    branches:
+      - master
+    types: [opened, synchronize, reopened]
+
+env:
+  IS_RELEASE: ${{ startsWith(github.head_ref, 'release/') }}
+
+jobs:
+  test_release:
+    if: env.IS_RELEASE == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: echo "Running PR for release/*"
