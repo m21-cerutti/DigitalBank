@@ -30,3 +30,20 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: echo "Release PR System Tests"
+
+  release_e2e_tests_pr:
+    needs: release_system_tests_pr
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/workflows/actions/setup-node
+      - run: echo "Release E2E Tests"
+      - uses: ./.github/workflows/actions/run-npm-cmd
+        with:
+          script: start
+      - uses: ./.github/workflows/actions/run-npm-cmd
+        with:
+          script: test:e2e
+      - uses: ./.github/workflows/actions/run-npm-cmd
+        with:
+          script: stop
