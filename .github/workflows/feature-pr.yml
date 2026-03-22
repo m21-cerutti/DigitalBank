@@ -1,4 +1,3 @@
-
 name: Feature PR
 on:
   pull_request:
@@ -9,11 +8,14 @@ on:
 jobs:
   call-guard:
     uses: ./.github/workflows/guard.yml
+    with:
+      environment: feature
 
   is_feature_pr:
-    needs: [call-guard]
+    needs: call-guard
     if: needs.call-guard.outputs.IS_FEATURE == 'true'
     runs-on: ubuntu-latest
+    environment: feature
     steps:
       - uses: actions/checkout@v4
       - run: echo "Running PR workflow for feature/*"
@@ -21,6 +23,7 @@ jobs:
   feature_linter_check_pr:
     needs: is_feature_pr
     runs-on: ubuntu-latest
+    environment: feature
     steps:
       - uses: actions/checkout@v4
       - run: echo "Feature PR Linter Check"
@@ -28,6 +31,7 @@ jobs:
   feature_secret_check_pr:
     needs: is_feature_pr
     runs-on: ubuntu-latest
+    environment: feature
     steps:
       - uses: actions/checkout@v4
       - run: echo "Feature PR Secret Check"
@@ -35,6 +39,7 @@ jobs:
   feature_unit_tests_pr:
     needs: [feature_linter_check_pr, feature_secret_check_pr]
     runs-on: ubuntu-latest
+    environment: feature
     steps:
       - uses: actions/checkout@v4
       - run: echo "Feature PR Unit Tests"
@@ -42,8 +47,7 @@ jobs:
   feature_integration_tests_pr:
     needs: feature_unit_tests_pr
     runs-on: ubuntu-latest
+    environment: feature
     steps:
       - uses: actions/checkout@v4
       - run: echo "Feature PR Integration Tests"
-
-  
