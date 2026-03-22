@@ -11,7 +11,18 @@ concurrency:
 
 #post-merge-develop
 jobs:
+  dev_sanity_check:
+    runs-on: ubuntu-latest
+    environment:
+      name: develop
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: develop
+      - run: echo "Develop Sanity Check"
+
   dev_smoke_tests:
+    needs: dev_sanity_check
     runs-on: ubuntu-latest
     environment:
       name: develop
@@ -22,14 +33,3 @@ jobs:
           ref: develop
       - run: echo "Develop Smoke Tests"
 
-  dev_sanity_check:
-    needs: dev_smoke_tests
-    runs-on: ubuntu-latest
-    environment:
-      name: develop
-      deployment: false
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          ref: develop
-      - run: echo "Develop Sanity Check"
