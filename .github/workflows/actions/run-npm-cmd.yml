@@ -1,0 +1,18 @@
+name: Run npm script
+description: Run an npm script in a working directory
+inputs:
+  script:
+    description: 'npm script name (e.g., "lint", "format:check")'
+    required: true
+  working-directory:
+    description: 'Working directory'
+    required: false
+    default: '.'
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Run npm ${{ inputs.script }}
+      shell: bash
+      working-directory: ${{ inputs.working-directory }}
+      run: npm run ${{ inputs.script }}
