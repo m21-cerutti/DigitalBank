@@ -26,6 +26,7 @@ git log --oneline HEAD ^main
 ## Unreleased
 
 ### CI
+
 - Linters
 - Secrets
 - Pre-commit

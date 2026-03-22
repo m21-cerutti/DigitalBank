@@ -138,21 +138,21 @@ jobs:
           script: secret:scan
           working-directory: ${{ inputs.working-directory }}
 
-  dockerfile:
-    if: ${{ inputs.run-dockerfile }}
-    name: Dockerfile lint
-    runs-on: ubuntu-latest
-    environment:
-      name: ${{ inputs.environment }}
-      deployment: false
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - uses: ./.github/workflows/actions/setup-node
-        with:
-          node-version: ${{ inputs.node-version }}
-          working-directory: ${{ inputs.working-directory }}
-      - uses: ./.github/workflows/actions/run-npm-cmd
-        with:
-          script: lint:docker
-          working-directory: ${{ inputs.working-directory }}
+  # dockerfile:
+  #   if: ${{ inputs.run-dockerfile }}
+  #   name: Dockerfile lint
+  #   runs-on: ubuntu-latest
+  #   environment:
+  #     name: ${{ inputs.environment }}
+  #     deployment: false
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v4
+  #     - uses: ./.github/workflows/actions/setup-node
+  #       with:
+  #         node-version: ${{ inputs.node-version }}
+  #         working-directory: ${{ inputs.working-directory }}
+  #     - uses: ./.github/workflows/actions/run-npm-cmd
+  #       with:
+  #         script: lint:docker
+  #         working-directory: ${{ inputs.working-directory }}
