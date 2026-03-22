@@ -5,8 +5,7 @@ on:
     inputs:
       environment:
         type: string
-        description: environment to deploy to
-        required: true
+        description: Environment to deploy to
     outputs:
       REPO:
         value: ${{ jobs.branch_env.outputs.REPO }}

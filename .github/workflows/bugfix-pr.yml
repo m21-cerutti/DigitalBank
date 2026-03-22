@@ -9,14 +9,11 @@ on:
 jobs:
   call-guard:
     uses: ./.github/workflows/guard.yml
-    with:
-      environment: bugfix
 
   is_bugfix_pr:
     needs: call-guard
     if: needs.call-guard.outputs.IS_BUGFIX == 'true'
     runs-on: ubuntu-latest
-    environment: bugfix
     steps:
       - uses: actions/checkout@v4
       - run: echo "Running PR workflow for bugfix/*"
@@ -24,7 +21,6 @@ jobs:
   bugfix_linter_check_pr:
     needs: is_bugfix_pr
     runs-on: ubuntu-latest
-    environment: bugfix
     steps:
       - uses: actions/checkout@v4
       - run: echo "Bugfix PR Linter Check"
@@ -32,7 +28,6 @@ jobs:
   bugfix_secret_check_pr:
     needs: is_bugfix_pr
     runs-on: ubuntu-latest
-    environment: bugfix
     steps:
       - uses: actions/checkout@v4
       - run: echo "Bugfix PR Secret Check"
@@ -40,7 +35,6 @@ jobs:
   bugfix_unit_tests_pr:
     needs: [bugfix_linter_check_pr, bugfix_secret_check_pr]
     runs-on: ubuntu-latest
-    environment: bugfix
     steps:
       - uses: actions/checkout@v4
       - run: echo "Bugfix PR Unit Tests"
@@ -48,7 +42,6 @@ jobs:
   bugfix_integration_tests_pr:
     needs: bugfix_unit_tests_pr
     runs-on: ubuntu-latest
-    environment: bugfix
     steps:
       - uses: actions/checkout@v4
       - run: echo "Bugfix PR Integration Tests"
