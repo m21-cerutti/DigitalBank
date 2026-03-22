@@ -27,7 +27,7 @@ on:
 jobs:
   branch_env:
     runs-on: ubuntu-latest
-    environment: 
+    environment:
       name: ${{ inputs.environment }}
       deployment: false
     outputs:

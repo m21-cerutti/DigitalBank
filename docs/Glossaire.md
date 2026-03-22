@@ -1,4 +1,5 @@
 <!-- omit from toc -->
+
 # Glossaire
 
 - [Général](#général)
@@ -7,7 +8,6 @@
 - [Automatisation](#automatisation)
 - [CI/CD](#cicd)
 - [Equivalences](#equivalences)
-
 
 ## Général
 
@@ -34,7 +34,6 @@ Version livrée en production.
 
 **Hotfix**
 Correctif urgent appliqué en production.
-
 
 ## Web & Technique
 
@@ -82,7 +81,6 @@ Temps max d’attente.
 
 **Flaky**
 Test instable (succès aléatoire).
-
 
 ## Tests
 
@@ -144,7 +142,6 @@ Vérifie échanges composants.
 **Test unitaire**
 Test fonction isolée.
 
-
 ## Automatisation
 
 **Framework de test**
@@ -189,7 +186,6 @@ Génération de rapports.
 **Screenshot / Vidéo**
 Preuves d’exécution.
 
-
 ## CI/CD
 
 **Pipeline**
@@ -230,7 +226,6 @@ Réseau interne.
 
 **Secrets**
 Variables sensibles.
-
 
 ## Equivalences
 

@@ -1,8 +1,8 @@
 <!-- omit from toc -->
+
 # Gestion des anomalies
 
 - [Diagramme workflow gestion anomalie](#diagramme-workflow-gestion-anomalie)
-
 
 ## Diagramme workflow gestion anomalie
 
