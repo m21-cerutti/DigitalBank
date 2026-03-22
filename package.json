@@ -16,8 +16,7 @@
     "lint:yaml": "npx yaml-lint **/*.yml **/*.yaml",
     "lint:all": "npm run lint && npm run lint:md && npm run lint:yaml",
     "secret:scan": "secretlint .",
-    "secret:scan:staged": "lint-staged -p -q",
-    "ci:secrets": "echo 'Use GitHub Action Gitleaks in CI'"
+    "test:unit": ""
   },
   "description": "Etude de cas 3 Examen Testeur Logiciel 2IAcademy ",
   "main": "app/index.html",
@@ -37,7 +36,7 @@
     "actions"
   ],
   "author": "Marc CERUTTI",
-  "license": "SEE LICENSE IN LICENSE",
+  "license": "LICENSE",
   "bugs": {
     "url": "https://github.com/m21-cerutti/DigitalBank/issues"
   },
