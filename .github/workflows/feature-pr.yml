@@ -37,4 +37,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: ./.github/workflows/actions/setup-node
       - run: echo "Feature PR Integration Tests"
+      - uses: ./.github/workflows/actions/run-npm-cmd
+        with:
+          script: start
+      - uses: ./.github/workflows/actions/run-npm-cmd
+        with:
+          script: test:api
+      - uses: ./.github/workflows/actions/run-npm-cmd
+        with:
+          script: stop

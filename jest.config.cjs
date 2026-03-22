@@ -5,6 +5,6 @@ module.exports = {
     '^.+\.[jt]sx?$': 'babel-jest',
   },
   setupFilesAfterEnv: ['<rootDir>/tests/src/unit/setup-tests.js'],
-  testMatch: ['<rootDir>/tests/src/unit/**/*.spec.js'],
+  testMatch: ['<rootDir>/tests/src/**/*.spec.js'],
   verbose: true,
 };

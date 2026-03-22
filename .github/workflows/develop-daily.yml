@@ -16,4 +16,14 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: develop
+      - uses: ./.github/workflows/actions/setup-node
       - run: echo "Daily Integration Tests API (Develop)"
+      - uses: ./.github/workflows/actions/run-npm-cmd
+        with:
+          script: start
+      - uses: ./.github/workflows/actions/run-npm-cmd
+        with:
+          script: test:api
+      - uses: ./.github/workflows/actions/run-npm-cmd
+        with:
+          script: stop
