@@ -51,6 +51,8 @@ jobs:
       name: ${{ inputs.environment }}
       deployment: false
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
       - uses: ./.github/workflows/actions/setup-node
         with:
           node-version: ${{ inputs.node-version }}
@@ -68,6 +70,8 @@ jobs:
       name: ${{ inputs.environment }}
       deployment: false
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
       - uses: ./.github/workflows/actions/setup-node
         with:
           node-version: ${{ inputs.node-version }}
@@ -85,6 +89,8 @@ jobs:
       name: ${{ inputs.environment }}
       deployment: false
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
       - uses: ./.github/workflows/actions/setup-node
         with:
           node-version: ${{ inputs.node-version }}
@@ -102,6 +108,8 @@ jobs:
       name: ${{ inputs.environment }}
       deployment: false
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
       - uses: ./.github/workflows/actions/setup-node
         with:
           node-version: ${{ inputs.node-version }}
@@ -119,6 +127,8 @@ jobs:
       name: ${{ inputs.environment }}
       deployment: false
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
       - uses: ./.github/workflows/actions/setup-node
         with:
           node-version: ${{ inputs.node-version }}
@@ -136,6 +146,8 @@ jobs:
       name: ${{ inputs.environment }}
       deployment: false
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
       - uses: ./.github/workflows/actions/setup-node
         with:
           node-version: ${{ inputs.node-version }}

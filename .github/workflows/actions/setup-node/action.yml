@@ -1,3 +1,4 @@
+# Need actions/checkout before
 name: Setup Node and install dependencies
 description: Checkout, setup Node.js, and install npm dependencies
 inputs:
@@ -13,9 +14,6 @@ inputs:
 runs:
   using: 'composite'
   steps:
-    - name: Checkout
-      uses: actions/checkout@v4
-
     - name: Setup Node ${{ inputs.node-version }}
       uses: actions/setup-node@v6
       with:
