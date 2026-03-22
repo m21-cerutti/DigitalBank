@@ -27,7 +27,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: ./.github/workflows/actions/setup-node
       - run: echo "Hotfix PR Unit Tests"
+      - uses: ./.github/workflows/actions/run-npm-cmd
+        with:
+          script: test:unit
 
   hotfix_integration_tests_pr:
     needs: hotfix_unit_tests_pr

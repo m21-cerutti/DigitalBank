@@ -26,7 +26,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: ./.github/workflows/actions/setup-node
       - run: echo "Feature PR Unit Tests"
+      - uses: ./.github/workflows/actions/run-npm-cmd
+        with:
+          script: test:unit
 
   feature_integration_tests_pr:
     needs: feature_unit_tests_pr

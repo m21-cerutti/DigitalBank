@@ -1,7 +1,7 @@
 {
   "name": "digitalbank",
   "version": "0.2.1",
-  "type": "module",
+  "type": "commonjs",
   "private": true,
   "scripts": {
     "prepare": "husky",
@@ -16,7 +16,7 @@
     "lint:yaml": "npx yaml-lint **/*.yml **/*.yaml",
     "lint:all": "npm run lint && npm run lint:md && npm run lint:yaml",
     "secret:scan": "secretlint .",
-    "test:unit": ""
+    "test:unit": "jest ."
   },
   "description": "Etude de cas 3 Examen Testeur Logiciel 2IAcademy ",
   "main": "app/index.html",
@@ -42,8 +42,13 @@
   },
   "homepage": "https://github.com/m21-cerutti/DigitalBank#readme",
   "devDependencies": {
+    "@babel/core": "^7.29.0",
+    "@babel/preset-env": "^7.29.2",
     "@eslint/js": "^10.0.1",
     "@secretlint/secretlint-rule-preset-recommend": "^11.4.0",
+    "@testing-library/dom": "^10.4.1",
+    "@testing-library/jest-dom": "^6.9.1",
+    "babel-jest": "^30.3.0",
     "dockerfilelint": "^1.8.0",
     "eslint": "^10.1.0",
     "eslint-config-prettier": "^10.1.8",
@@ -51,6 +56,9 @@
     "globals": "^17.4.0",
     "http-server": "^14.1.1",
     "husky": "^9.1.7",
+    "jest": "^30.3.0",
+    "jest-environment-jsdom": "^30.3.0",
+    "jsdom": "^29.0.1",
     "lint-staged": "^16.4.0",
     "markdownlint-cli": "^0.48.0",
     "prettier": "^3.8.1",

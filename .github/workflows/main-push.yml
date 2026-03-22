@@ -35,7 +35,11 @@ jobs:
       deployment: false
     steps:
       - uses: actions/checkout@v4
+      - uses: ./.github/workflows/actions/setup-node
       - run: echo "Main Unit Tests"
+      - uses: ./.github/workflows/actions/run-npm-cmd
+        with:
+          script: test:unit
 
   main_integration_tests:
     needs: main_unit_tests
