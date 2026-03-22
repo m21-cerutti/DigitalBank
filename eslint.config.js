@@ -6,7 +6,14 @@ const eslintPluginPrettier = require('eslint-plugin-prettier');
 module.exports = [
   // Dossiers à ignorer globalement
   {
-    ignores: ['**/node_modules/**', '**/dist/**', '**/build/**', '**/coverage/**'],
+    ignores: [
+      '**/node_modules/**',
+      '**/dist/**',
+      '**/build/**',
+      '**/coverage/**',
+      '**/.venv/**',
+      '**/results/**',
+    ],
   },
 
   // Base JavaScript (ES modules par défaut)
