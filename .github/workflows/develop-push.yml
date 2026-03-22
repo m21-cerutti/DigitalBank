@@ -9,26 +9,28 @@ concurrency:
   group: ${{ github.workflow }}
   cancel-in-progress: false
 
-#post-merge-develop
 jobs:
-  dev_sanity_check:
-    runs-on: ubuntu-latest
-    environment:
-      name: develop
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          ref: develop
-      - run: echo "Develop Sanity Check"
-
-  main_linter_check:
-    needs: dev_sanity_check
+  dev_linter_check:
     uses: ./.github/workflows/lint.yml
     with:
       environment: develop
 
+  dev_unit_tests:
+    needs: dev_linter_check
+    runs-on: ubuntu-latest
+    environment:
+      name: develop
+      deployment: false
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/workflows/actions/setup-node
+      - run: echo "Develop Unit Tests"
+      - uses: ./.github/workflows/actions/run-npm-cmd
+        with:
+          script: test:unit
+
   dev_smoke_tests:
-    needs: dev_sanity_check
+    needs: dev_unit_tests
     runs-on: ubuntu-latest
     environment:
       name: develop
@@ -38,3 +40,25 @@ jobs:
         with:
           ref: develop
       - run: echo "Develop Smoke Tests"
+
+  dev_deploy:
+    needs: dev_smoke_tests
+    runs-on: ubuntu-latest
+    environment:
+      name: develop
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: develop
+      - run: echo "Develop Deploy"
+
+  dev_sanity_check:
+    needs: dev_deploy
+    runs-on: ubuntu-latest
+    environment:
+      name: develop
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: develop
+      - run: echo "Develop Sanity Check"
