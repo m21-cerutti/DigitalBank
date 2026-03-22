@@ -22,8 +22,8 @@
     "test:unit": "jest ./tests/src/unit",
     "test:api": "cd ./tests/src/integration/api/ && bru run",
     "test:integration": "npm run test:api && jest ./tests/src/integration",
+    "test:e2e:install": "py -m venv ./tests/src/e2e/.venv && node runner_e2e.js py -m pip install -r requirements.txt",
     "test:e2e:version": "node runner_e2e.js py -m pip --version",
-    "test:e2e:install": "node runner_e2e.js py -m pip install -r requirements.txt",
     "test:e2e": "node runner_e2e.js robot -d results/ ."
   },
   "description": "Etude de cas 3 Examen Testeur Logiciel 2IAcademy ",
