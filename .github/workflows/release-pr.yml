@@ -33,9 +33,10 @@ jobs:
 
   release_e2e_tests_pr:
     needs: release_system_tests_pr
-    runs-on: python:3
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-python@v6
       - uses: ./.github/workflows/actions/setup-node
       - uses: ./.github/workflows/actions/run-npm-cmd
         with:

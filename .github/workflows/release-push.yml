@@ -30,12 +30,13 @@ jobs:
 
   release_e2e_tests_push:
     needs: release_system_tests_push
-    runs-on: python:3
+    runs-on: ubuntu-latest
     environment:
       name: release
       deployment: false
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-python@v6
       - uses: ./.github/workflows/actions/setup-node
       - uses: ./.github/workflows/actions/run-npm-cmd
         with:

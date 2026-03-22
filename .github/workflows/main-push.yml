@@ -71,12 +71,13 @@ jobs:
 
   main_e2e_tests:
     needs: main_system_tests
-    runs-on: python:3
+    runs-on: ubuntu-latest
     environment:
       name: main
       deployment: false
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-python@v6
       - uses: ./.github/workflows/actions/setup-node
       - uses: ./.github/workflows/actions/run-npm-cmd
         with:
