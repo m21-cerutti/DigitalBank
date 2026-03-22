@@ -15,7 +15,6 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: main
-      deployment: false
     steps:
       - uses: actions/checkout@v4
       - run: echo "Production checks running"
