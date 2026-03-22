@@ -1,9 +1,9 @@
-
 name: Main
 on:
   push:
     branches:
       - main
+  workflow_dispatch:
 
 concurrency:
   group: ${{ github.workflow }}
@@ -13,6 +13,65 @@ concurrency:
 jobs:
   main_sanity_check:
     runs-on: ubuntu-latest
+    environment: main
     steps:
       - uses: actions/checkout@v4
       - run: echo "Production checks running"
+
+  main_linter_check:
+    needs: main_sanity_check
+    runs-on: ubuntu-latest
+    environment: feature
+    steps:
+      - uses: actions/checkout@v4
+      - run: echo "Main Linter Check"
+
+  main_secret_check:
+    needs: main_sanity_check
+    runs-on: ubuntu-latest
+    environment: feature
+    steps:
+      - uses: actions/checkout@v4
+      - run: echo "Main Secret Check"
+
+  main_unit_tests:
+    needs: [main_linter_check, main_secret_check]
+    runs-on: ubuntu-latest
+    environment: feature
+    steps:
+      - uses: actions/checkout@v4
+      - run: echo "Main Unit Tests"
+
+  main_integration_tests:
+    needs: main_unit_tests
+    runs-on: ubuntu-latest
+    environment: feature
+    steps:
+      - uses: actions/checkout@v4
+      - run: echo "Main Integration Tests"
+
+  main_smoke_tests:
+    needs: main_integration_tests
+    runs-on: ubuntu-latest
+    environment: release
+    steps:
+      - uses: actions/checkout@v4
+      - run: echo "Main Smoke Tests"
+
+  main_system_tests:
+    needs: main_smoke_tests
+    runs-on: ubuntu-latest
+    environment: feature
+    steps:
+      - uses: actions/checkout@v4
+      - run: echo "Main System Tests"
+
+  main_e2e_tests:
+    needs: main_system_tests
+    runs-on: ubuntu-latest
+    environment: feature
+    steps:
+      - uses: actions/checkout@v4
+      - run: echo "Main E2E Tests"
+  
+      

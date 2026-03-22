@@ -1,9 +1,9 @@
-
 name: Develop
 on:
   push:
     branches:
       - develop
+  workflow_dispatch:
 
 concurrency:
   group: ${{ github.workflow }}
@@ -12,13 +12,20 @@ concurrency:
 #post-merge-develop
 jobs:
   dev_smoke_tests:
-      runs-on: ubuntu-latest
-      steps:
-        - uses: actions/checkout@v4
-        - run: echo "Develop Smoke Tests"
-
-  dev_sanity_check:
     runs-on: ubuntu-latest
+    environment: develop
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: develop
+      - run: echo "Develop Smoke Tests"
+
+  dev_sanity_check:
+    needs: dev_smoke_tests
+    runs-on: ubuntu-latest
+    environment: develop
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: develop
       - run: echo "Develop Sanity Check"

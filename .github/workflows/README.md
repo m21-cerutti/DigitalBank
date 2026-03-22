@@ -79,9 +79,11 @@ Pour une vision globale, voir le document ../docs/Pipeline.md.
 jobs:
   call-guard:
     uses: ./.github/workflows/guard.yml
+    with:
+      environment: feature
 
   is_feature_pr:
-    needs: [call-guard]
+    needs: call-guard
     if: needs.call-guard.outputs.IS_FEATURE == 'true'
     runs-on: ubuntu-latest
     steps:

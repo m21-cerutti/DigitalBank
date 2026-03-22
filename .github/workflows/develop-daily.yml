@@ -1,24 +1,15 @@
-
 name: Develop Daily
 
 on:
   schedule:
-    - cron: '30 05 * * *'
+    - cron: "30 05 * * *"
   workflow_dispatch:
 
 jobs:
-  checkout_develop:
-    name: Dev - Checkout develop (daily)
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          ref: develop
-      - run: echo "Daily Integration Tests API (Develop)"
-
   dev_integration_tests_api_daily:
     name: Dev - Integration Tests API (daily)
     runs-on: ubuntu-latest
+    environment: develop
     steps:
       - uses: actions/checkout@v4
         with:
