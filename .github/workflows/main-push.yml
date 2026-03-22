@@ -78,16 +78,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: ./.github/workflows/actions/setup-node
+      - uses: ./.github/workflows/actions/run-npm-cmd
+        with:
+          script: test:e2e:install
       - run: echo "Main E2E Tests"
       - uses: ./.github/workflows/actions/run-npm-cmd
         with:
-          script: start
-      - uses: ./.github/workflows/actions/run-npm-cmd
-        with:
           script: test:e2e
-      - uses: ./.github/workflows/actions/run-npm-cmd
-        with:
-          script: stop
 
   main_deploy:
     needs: main_e2e_tests

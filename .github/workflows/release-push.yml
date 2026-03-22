@@ -29,7 +29,7 @@ jobs:
       - run: echo "Release PUSH System Tests"
 
   release_e2e_tests_push:
-    needs: release_smoke_tests_push
+    needs: release_system_tests_push
     runs-on: ubuntu-latest
     environment:
       name: release
@@ -37,13 +37,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: ./.github/workflows/actions/setup-node
+      - uses: ./.github/workflows/actions/run-npm-cmd
+        with:
+          script: test:e2e:install
       - run: echo "Release E2E Tests"
       - uses: ./.github/workflows/actions/run-npm-cmd
         with:
-          script: start
-      - uses: ./.github/workflows/actions/run-npm-cmd
-        with:
           script: test:e2e
-      - uses: ./.github/workflows/actions/run-npm-cmd
-        with:
-          script: stop
