@@ -1,3 +1,1 @@
 # ADR — Architecture Decision Records
-
-

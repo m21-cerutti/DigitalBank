@@ -1,0 +1,77 @@
+{
+  "name": "digitalbank",
+  "version": "0.2.1",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "prepare": "husky",
+    "start": "http-server app -p 5173 -o",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier . --write",
+    "format:check": "prettier . --check",
+    "lint:md": "markdownlint .",
+    "lint:md:fix": "markdownlint --fix .",
+    "lint:docker": "npx dockerfilelint $(find . -type f -name 'Dockerfile' -not -path '**/node_modules/*')",
+    "lint:yaml": "npx yaml-lint **/*.yml **/*.yaml",
+    "lint:all": "npm run lint && npm run lint:md && npm run lint:yaml",
+    "secret:scan": "secretlint .",
+    "test:unit": ""
+  },
+  "description": "Etude de cas 3 Examen Testeur Logiciel 2IAcademy ",
+  "main": "app/index.html",
+  "directories": {
+    "doc": "docs",
+    "test": "tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/m21-cerutti/DigitalBank.git"
+  },
+  "keywords": [
+    "automatisation",
+    "pipeline",
+    "ci",
+    "github",
+    "actions"
+  ],
+  "author": "Marc CERUTTI",
+  "license": "LICENSE",
+  "bugs": {
+    "url": "https://github.com/m21-cerutti/DigitalBank/issues"
+  },
+  "homepage": "https://github.com/m21-cerutti/DigitalBank#readme",
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@secretlint/secretlint-rule-preset-recommend": "^11.4.0",
+    "dockerfilelint": "^1.8.0",
+    "eslint": "^10.1.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.5",
+    "globals": "^17.4.0",
+    "http-server": "^14.1.1",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.4.0",
+    "markdownlint-cli": "^0.48.0",
+    "prettier": "^3.8.1",
+    "secretlint": "^11.4.0",
+    "ts-node": "^10.9.2",
+    "yaml-lint": "^1.7.0"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,md,css,scss,html,yml,yaml}": [
+      "prettier --write"
+    ],
+    "*.md": [
+      "prettier --write",
+      "markdownlint --fix"
+    ],
+    "*.{env,env.*}": "secretlint",
+    "*.{js,jsx,css,html,md,json,yml,yaml}": "secretlint",
+    "**/Dockerfile": "dockerfilelint"
+  }
+}
