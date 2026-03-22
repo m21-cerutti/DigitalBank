@@ -12,11 +12,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: git checkout origin develop
+        with:
+          ref: develop
+      - run: echo "Daily Integration Tests API (Develop)"
 
   dev_integration_tests_api_daily:
     name: Dev - Integration Tests API (daily)
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: develop
       - run: echo "Daily Integration Tests API (Develop)"
