@@ -30,7 +30,7 @@ jobs:
 
   release_e2e_tests_push:
     needs: release_system_tests_push
-    runs-on: ubuntu/python:3.13-25.10_stable
+    runs-on: python:3
     environment:
       name: release
       deployment: false

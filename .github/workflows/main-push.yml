@@ -71,7 +71,7 @@ jobs:
 
   main_e2e_tests:
     needs: main_system_tests
-    runs-on: ubuntu/python:3.13-25.10_stable
+    runs-on: python:3
     environment:
       name: main
       deployment: false
