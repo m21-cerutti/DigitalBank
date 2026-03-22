@@ -21,6 +21,12 @@ jobs:
           ref: develop
       - run: echo "Develop Sanity Check"
 
+  main_linter_check:
+    needs: dev_sanity_check
+    uses: ./.github/workflows/lint.yml
+    with:
+      environment: develop
+
   dev_smoke_tests:
     needs: dev_sanity_check
     runs-on: ubuntu-latest
