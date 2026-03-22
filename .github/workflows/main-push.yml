@@ -16,7 +16,7 @@ jobs:
     environment:
       name: main
     steps:
-      - uses: ./.github/workflows/actions/setup-node.yml
+      - uses: ./.github/workflows/actions/setup-node
       - run: echo "Production checks running"
 
   main_linter_check:
