@@ -11,8 +11,9 @@ concurrency:
 jobs:
   release_smoke_tests_push:
     runs-on: ubuntu-latest
-     environment:  release
-     deployment: false
+    environment:
+      name: release
+      deployment: false
     steps:
       - uses: actions/checkout@v4
       - run: echo "Release PUSH Smoke Tests"
@@ -20,8 +21,9 @@ jobs:
   release_system_tests_push:
     needs: release_smoke_tests_push
     runs-on: ubuntu-latest
-     environment:  release
-     deployment: false
+    environment:
+      name: release
+      deployment: false
     steps:
       - uses: actions/checkout@v4
       - run: echo "Release PUSH System Tests"
@@ -29,8 +31,9 @@ jobs:
   release_e2e_tests_push:
     needs: release_smoke_tests_push
     runs-on: ubuntu-latest
-     environment:  release
-     deployment: false
+    environment:
+      name: release
+      deployment: false
     steps:
       - uses: actions/checkout@v4
       - run: echo "Release PUSH E2E Tests"
