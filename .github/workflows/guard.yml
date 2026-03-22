@@ -1,4 +1,4 @@
-name: Guard Job
+name: Guard Job (reusable)
 
 on:
   workflow_call:
@@ -6,6 +6,7 @@ on:
       environment:
         type: string
         description: Environment to deploy to
+        default: 'default'
     outputs:
       REPO:
         value: ${{ jobs.branch_env.outputs.REPO }}
@@ -27,7 +28,7 @@ on:
 jobs:
   branch_env:
     runs-on: ubuntu-latest
-    environment: 
+    environment:
       name: ${{ inputs.environment }}
       deployment: false
     outputs:

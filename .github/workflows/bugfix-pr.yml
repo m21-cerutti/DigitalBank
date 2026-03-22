@@ -20,20 +20,10 @@ jobs:
 
   bugfix_linter_check_pr:
     needs: is_bugfix_pr
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - run: echo "Bugfix PR Linter Check"
-
-  bugfix_secret_check_pr:
-    needs: is_bugfix_pr
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - run: echo "Bugfix PR Secret Check"
+    uses: ./.github/workflows/lint.yml
 
   bugfix_unit_tests_pr:
-    needs: [bugfix_linter_check_pr, bugfix_secret_check_pr]
+    needs: bugfix_linter_check_pr
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4

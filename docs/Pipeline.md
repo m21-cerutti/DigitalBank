@@ -1,8 +1,8 @@
 <!-- omit from toc -->
+
 # Pipeline
 
 - [Pipeline complet (à implémenter)](#pipeline-complet-à-implémenter)
-
 
 ## Pipeline complet (à implémenter)
 

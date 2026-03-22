@@ -1,0 +1,146 @@
+name: Lint (reusable)
+
+on:
+  workflow_call:
+    inputs:
+      environment:
+        type: string
+        description: Environment to deploy to
+        default: 'default'
+      node-version:
+        type: string
+        default: '24'
+      environnement:
+        type: string
+        default: ''
+      working-directory:
+        type: string
+        default: '.'
+      run-eslint:
+        type: boolean
+        default: true
+      run-prettier:
+        type: boolean
+        default: true
+      run-markdown:
+        type: boolean
+        default: true
+      run-yaml:
+        type: boolean
+        default: true
+      run-secretlint:
+        type: boolean
+        default: true
+      run-dockerfile:
+        type: boolean
+        default: true
+
+permissions:
+  contents: read
+
+concurrency:
+  group: lint-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  eslint:
+    if: ${{ inputs.run-eslint }}
+    name: ESLint
+    runs-on: ubuntu-latest
+    environment:
+      name: ${{ inputs.environment }}
+      deployment: false
+    steps:
+      - uses: ./.github/workflows/actions/setup-node.yml
+        with:
+          node-version: ${{ inputs.node-version }}
+          working-directory: ${{ inputs.working-directory }}
+      - uses: ./.github/workflows/actions/run-npm-cmd.yml
+        with:
+          script: lint
+          working-directory: ${{ inputs.working-directory }}
+
+  prettier:
+    if: ${{ inputs.run-prettier }}
+    name: Prettier (check)
+    runs-on: ubuntu-latest
+    environment:
+      name: ${{ inputs.environment }}
+      deployment: false
+    steps:
+      - uses: ./.github/workflows/actions/setup-node.yml
+        with:
+          node-version: ${{ inputs.node-version }}
+          working-directory: ${{ inputs.working-directory }}
+      - uses: ./.github/workflows/actions/run-npm-cmd.yml
+        with:
+          script: format:check
+          working-directory: ${{ inputs.working-directory }}
+
+  markdown:
+    if: ${{ inputs.run-markdown }}
+    name: Markdownlint
+    runs-on: ubuntu-latest
+    environment:
+      name: ${{ inputs.environment }}
+      deployment: false
+    steps:
+      - uses: ./.github/workflows/actions/setup-node.yml
+        with:
+          node-version: ${{ inputs.node-version }}
+          working-directory: ${{ inputs.working-directory }}
+      - uses: ./.github/workflows/actions/run-npm-cmd.yml
+        with:
+          script: lint:md
+          working-directory: ${{ inputs.working-directory }}
+
+  yaml:
+    if: ${{ inputs.run-yaml }}
+    name: YAML lint
+    runs-on: ubuntu-latest
+    environment:
+      name: ${{ inputs.environment }}
+      deployment: false
+    steps:
+      - uses: ./.github/workflows/actions/setup-node.yml
+        with:
+          node-version: ${{ inputs.node-version }}
+          working-directory: ${{ inputs.working-directory }}
+      - uses: ./.github/workflows/actions/run-npm-cmd.yml
+        with:
+          script: lint:yaml
+          working-directory: ${{ inputs.working-directory }}
+
+  secretlint:
+    if: ${{ inputs.run-secretlint }}
+    name: Secretlint (local)
+    runs-on: ubuntu-latest
+    environment:
+      name: ${{ inputs.environment }}
+      deployment: false
+    steps:
+      - uses: ./.github/workflows/actions/setup-node.yml
+        with:
+          node-version: ${{ inputs.node-version }}
+          working-directory: ${{ inputs.working-directory }}
+      - uses: ./.github/workflows/actions/run-npm-cmd.yml
+        with:
+          script: secret:scan
+          working-directory: ${{ inputs.working-directory }}
+
+  dockerfile:
+    if: ${{ inputs.run-dockerfile }}
+    name: Dockerfile lint
+    runs-on: ubuntu-latest
+    environment:
+      name: ${{ inputs.environment }}
+      deployment: false
+    steps:
+      - uses: ./.github/workflows/actions/setup-node.yml
+        with:
+          node-version: ${{ inputs.node-version }}
+          working-directory: ${{ inputs.working-directory }}
+      - uses: ./.github/workflows/actions/run-npm-cmd.yml
+        with:
+          script: lint:docker
+          working-directory: ${{ inputs.working-directory }}
