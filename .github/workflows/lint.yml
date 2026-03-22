@@ -51,11 +51,11 @@ jobs:
       name: ${{ inputs.environment }}
       deployment: false
     steps:
-      - uses: ./.github/workflows/actions/setup-node.yml
+      - uses: ./.github/workflows/actions/setup-node
         with:
           node-version: ${{ inputs.node-version }}
           working-directory: ${{ inputs.working-directory }}
-      - uses: ./.github/workflows/actions/run-npm-cmd.yml
+      - uses: ./.github/workflows/actions/run-npm-cmd
         with:
           script: lint
           working-directory: ${{ inputs.working-directory }}
@@ -68,11 +68,11 @@ jobs:
       name: ${{ inputs.environment }}
       deployment: false
     steps:
-      - uses: ./.github/workflows/actions/setup-node.yml
+      - uses: ./.github/workflows/actions/setup-node
         with:
           node-version: ${{ inputs.node-version }}
           working-directory: ${{ inputs.working-directory }}
-      - uses: ./.github/workflows/actions/run-npm-cmd.yml
+      - uses: ./.github/workflows/actions/run-npm-cmd
         with:
           script: format:check
           working-directory: ${{ inputs.working-directory }}
@@ -85,11 +85,11 @@ jobs:
       name: ${{ inputs.environment }}
       deployment: false
     steps:
-      - uses: ./.github/workflows/actions/setup-node.yml
+      - uses: ./.github/workflows/actions/setup-node
         with:
           node-version: ${{ inputs.node-version }}
           working-directory: ${{ inputs.working-directory }}
-      - uses: ./.github/workflows/actions/run-npm-cmd.yml
+      - uses: ./.github/workflows/actions/run-npm-cmd
         with:
           script: lint:md
           working-directory: ${{ inputs.working-directory }}
@@ -102,11 +102,11 @@ jobs:
       name: ${{ inputs.environment }}
       deployment: false
     steps:
-      - uses: ./.github/workflows/actions/setup-node.yml
+      - uses: ./.github/workflows/actions/setup-node
         with:
           node-version: ${{ inputs.node-version }}
           working-directory: ${{ inputs.working-directory }}
-      - uses: ./.github/workflows/actions/run-npm-cmd.yml
+      - uses: ./.github/workflows/actions/run-npm-cmd
         with:
           script: lint:yaml
           working-directory: ${{ inputs.working-directory }}
@@ -119,11 +119,11 @@ jobs:
       name: ${{ inputs.environment }}
       deployment: false
     steps:
-      - uses: ./.github/workflows/actions/setup-node.yml
+      - uses: ./.github/workflows/actions/setup-node
         with:
           node-version: ${{ inputs.node-version }}
           working-directory: ${{ inputs.working-directory }}
-      - uses: ./.github/workflows/actions/run-npm-cmd.yml
+      - uses: ./.github/workflows/actions/run-npm-cmd
         with:
           script: secret:scan
           working-directory: ${{ inputs.working-directory }}
@@ -136,11 +136,11 @@ jobs:
       name: ${{ inputs.environment }}
       deployment: false
     steps:
-      - uses: ./.github/workflows/actions/setup-node.yml
+      - uses: ./.github/workflows/actions/setup-node
         with:
           node-version: ${{ inputs.node-version }}
           working-directory: ${{ inputs.working-directory }}
-      - uses: ./.github/workflows/actions/run-npm-cmd.yml
+      - uses: ./.github/workflows/actions/run-npm-cmd
         with:
           script: lint:docker
           working-directory: ${{ inputs.working-directory }}
