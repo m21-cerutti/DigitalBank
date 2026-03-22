@@ -78,6 +78,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v6
+        with:
+          python-version: '3.13'
       - uses: ./.github/workflows/actions/setup-node
       - uses: ./.github/workflows/actions/run-npm-cmd
         with:

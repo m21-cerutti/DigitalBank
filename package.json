@@ -15,15 +15,15 @@
     "lint:md:fix": "markdownlint --fix .",
     "lint:docker": "npx dockerfilelint $(find . -type f -name 'Dockerfile' -not -path '**/node_modules/*')",
     "lint:yaml": "npx yaml-lint **/*.yml **/*.yaml",
-    "lint:py": "node runner_e2e.js py -m black .",
-    "lint:py:check": "node runner_e2e.js py -m --check .",
+    "lint:py": "node runner_e2e.js python -m black .",
+    "lint:py:check": "node runner_e2e.js python -m --check .",
     "lint:all": "npm run lint && npm run lint:md && npm run lint:yaml && npm run lint:py",
     "secret:scan": "secretlint .",
     "test:unit": "jest ./tests/src/unit",
     "test:api": "cd ./tests/src/integration/api/ && bru run",
     "test:integration": "npm run test:api && jest ./tests/src/integration",
-    "test:e2e:install": "py -m venv ./tests/src/e2e/.venv && node runner_e2e.js py -m pip install -r requirements.txt",
-    "test:e2e:version": "node runner_e2e.js py -m pip --version",
+    "test:e2e:install": "python -m venv ./tests/src/e2e/.venv && node runner_e2e.js python -m pip install -r requirements.txt",
+    "test:e2e:version": "node runner_e2e.js python -m pip --version",
     "test:e2e": "node runner_e2e.js robot -d results/ ."
   },
   "description": "Etude de cas 3 Examen Testeur Logiciel 2IAcademy ",
@@ -88,7 +88,7 @@
       "prettier --write",
       "markdownlint --fix"
     ],
-    "*.{py,pynb}": "node runner_e2e.js py -m black",
+    "*.{py,pynb}": "node runner_e2e.js python -m black",
     "*.{env,env.*}": "secretlint",
     "*.{js,jsx,css,html,md,json,yml,yaml}": "secretlint",
     "**/Dockerfile": "dockerfilelint"
