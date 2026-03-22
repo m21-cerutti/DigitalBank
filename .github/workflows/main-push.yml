@@ -16,31 +16,17 @@ jobs:
     environment:
       name: main
     steps:
-      - uses: actions/checkout@v4
+      - uses: ./.github/workflows/actions/setup-node.yml
       - run: echo "Production checks running"
 
   main_linter_check:
     needs: main_sanity_check
-    runs-on: ubuntu-latest
-    environment:
-      name: main
-      deployment: false
-    steps:
-      - uses: actions/checkout@v4
-      - run: echo "Main Linter Check"
-
-  main_secret_check:
-    needs: main_sanity_check
-    runs-on: ubuntu-latest
-    environment:
-      name: main
-      deployment: false
-    steps:
-      - uses: actions/checkout@v4
-      - run: echo "Main Secret Check"
+    uses: ./.github/workflows/lint.yml
+    with:
+      environment: main
 
   main_unit_tests:
-    needs: [main_linter_check, main_secret_check]
+    needs: main_linter_check
     runs-on: ubuntu-latest
     environment:
       name: main

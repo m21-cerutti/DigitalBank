@@ -19,20 +19,10 @@ jobs:
 
   feature_linter_check_pr:
     needs: is_feature_pr
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - run: echo "Feature PR Linter Check"
-
-  feature_secret_check_pr:
-    needs: is_feature_pr
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - run: echo "Feature PR Secret Check"
+    uses: ./.github/workflows/lint.yml
 
   feature_unit_tests_pr:
-    needs: [feature_linter_check_pr, feature_secret_check_pr]
+    needs: feature_linter_check_pr
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
