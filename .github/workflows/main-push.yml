@@ -21,7 +21,7 @@ jobs:
   main_linter_check:
     needs: main_sanity_check
     runs-on: ubuntu-latest
-    environment: feature
+    environment: main
     steps:
       - uses: actions/checkout@v4
       - run: echo "Main Linter Check"
@@ -29,7 +29,7 @@ jobs:
   main_secret_check:
     needs: main_sanity_check
     runs-on: ubuntu-latest
-    environment: feature
+    environment: main
     steps:
       - uses: actions/checkout@v4
       - run: echo "Main Secret Check"
@@ -37,7 +37,7 @@ jobs:
   main_unit_tests:
     needs: [main_linter_check, main_secret_check]
     runs-on: ubuntu-latest
-    environment: feature
+    environment: main
     steps:
       - uses: actions/checkout@v4
       - run: echo "Main Unit Tests"
@@ -45,7 +45,7 @@ jobs:
   main_integration_tests:
     needs: main_unit_tests
     runs-on: ubuntu-latest
-    environment: feature
+    environment: main
     steps:
       - uses: actions/checkout@v4
       - run: echo "Main Integration Tests"
@@ -53,7 +53,7 @@ jobs:
   main_smoke_tests:
     needs: main_integration_tests
     runs-on: ubuntu-latest
-    environment: release
+    environment: main
     steps:
       - uses: actions/checkout@v4
       - run: echo "Main Smoke Tests"
@@ -61,7 +61,7 @@ jobs:
   main_system_tests:
     needs: main_smoke_tests
     runs-on: ubuntu-latest
-    environment: feature
+    environment: main
     steps:
       - uses: actions/checkout@v4
       - run: echo "Main System Tests"
@@ -69,7 +69,7 @@ jobs:
   main_e2e_tests:
     needs: main_system_tests
     runs-on: ubuntu-latest
-    environment: feature
+    environment: main
     steps:
       - uses: actions/checkout@v4
       - run: echo "Main E2E Tests"
