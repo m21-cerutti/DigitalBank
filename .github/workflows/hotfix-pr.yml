@@ -9,14 +9,11 @@ on:
 jobs:
   call-guard:
     uses: ./.github/workflows/guard.yml
-    with:
-      environment: hotfix
 
   is_hotfix_pr:
     needs: call-guard
     if: needs.call-guard.outputs.IS_HOTFIX == 'true'
     runs-on: ubuntu-latest
-    environment: hotfix
     steps:
       - uses: actions/checkout@v4
       - run: echo "Running PR workflow for hotfix/*"
@@ -24,7 +21,6 @@ jobs:
   hotfix_linter_check_pr:
     needs: is_hotfix_pr
     runs-on: ubuntu-latest
-    environment: hotfix
     steps:
       - uses: actions/checkout@v4
       - run: echo "Hotfix PR Linter Check"
@@ -32,7 +28,6 @@ jobs:
   hotfix_secret_check_pr:
     needs: is_hotfix_pr
     runs-on: ubuntu-latest
-    environment: hotfix
     steps:
       - uses: actions/checkout@v4
       - run: echo "Hotfix PR Secret Check"
@@ -40,7 +35,6 @@ jobs:
   hotfix_unit_tests_pr:
     needs: [hotfix_linter_check_pr, hotfix_secret_check_pr]
     runs-on: ubuntu-latest
-    environment: hotfix
     steps:
       - uses: actions/checkout@v4
       - run: echo "Hotfix PR Unit Tests"
@@ -48,7 +42,6 @@ jobs:
   hotfix_integration_tests_pr:
     needs: hotfix_unit_tests_pr
     runs-on: ubuntu-latest
-    environment: hotfix
     steps:
       - uses: actions/checkout@v4
       - run: echo "Hotfix PR Integration Tests"
