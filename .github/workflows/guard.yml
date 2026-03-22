@@ -3,8 +3,7 @@ name: Guard Job
 on:
   workflow_call:
     inputs:
-       environment: 
-       deployment: false
+      environment:
         type: string
         description: Environment to deploy to
     outputs:
@@ -28,8 +27,9 @@ on:
 jobs:
   branch_env:
     runs-on: ubuntu-latest
-     environment:  ${{ inputs.environment }}
-     deployment: false
+    environment: 
+      name: ${{ inputs.environment }}
+      deployment: false
     outputs:
       REPO: ${{ github.event.repository.name }}
       BRANCH: ${{ github.head_ref || github.ref_name }}

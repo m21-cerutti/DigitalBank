@@ -79,9 +79,6 @@ Pour une vision globale, voir le document ../docs/Pipeline.md.
 jobs:
   call-guard:
     uses: ./.github/workflows/guard.yml
-    with:
-       environment:  feature
-       deployment: false
 
   is_feature_pr:
     needs: call-guard

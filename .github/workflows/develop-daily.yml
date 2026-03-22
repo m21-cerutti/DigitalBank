@@ -9,8 +9,9 @@ jobs:
   dev_integration_tests_api_daily:
     name: Dev - Integration Tests API (daily)
     runs-on: ubuntu-latest
-     environment:  develop
-     deployment: false
+    environment:
+      name: develop
+      deployment: false
     steps:
       - uses: actions/checkout@v4
         with:
