@@ -4,18 +4,18 @@ inputs:
   python-version:
     description: 'Python version to install'
     required: false
-    default: '24'
+    default: '3.13'
+  chrome-version:
+    description: 'Chrome version and driver version to install'
+    required: false
+    default: '146.0.7680.153'
 
 runs:
   using: 'composite'
   steps:
-    - name: Run npm ${{ inputs.script }}
-      shell: bash
-      working-directory: ${{ inputs.working-directory }}
-      run: npm run ${{ inputs.script }}
     - uses: actions/setup-python@v6
       with:
-        python-version: '3.13'
+        python-version: ${{ inputs.python-version }}
     - uses: actions/cache@v4
       id: cache-pip
       with:
@@ -33,7 +33,7 @@ runs:
       shell: bash
       run: |
         # Using specific ChromeDriver version for Chrome I used 132
-        CHROMEDRIVER_VERSION="132.0.6834.83"
+        CHROMEDRIVER_VERSION="${{ inputs.chrome-version }}"
         echo "Installing ChromeDriver version: $CHROMEDRIVER_VERSION"
         wget -q "https://edgedl.me.gvt1.com/edgedl/chrome/chrome-for-testing/$CHROMEDRIVER_VERSION/linux64/chromedriver-linux64.zip"
         unzip chromedriver-linux64.zip
