@@ -4,6 +4,7 @@
 
 *** Variables ***
 ${APP_URL}                http://127.0.0.1:5173/
+# ${BROWSER}                headlesschrome
 ${BROWSER}                chrome
 ${HEADLESS}               ${false}
 ${VIEWPORT_WIDTH}         1440
