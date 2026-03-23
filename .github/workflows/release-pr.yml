@@ -36,14 +36,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v6
-        with:
-          python-version: '3.13'
+      - uses: ./.github/workflows/actions/setup-selenium
       - uses: ./.github/workflows/actions/setup-node
       - uses: ./.github/workflows/actions/run-npm-cmd
         with:
-          script: test:e2e:install
+          script: test:e2e:install:ci
+      # - uses: nanasess/setup-chromedriver@v2
+      # - run: chromedriver --version
+      - uses: ./.github/workflows/actions/run-npm-cmd
+        with:
+          script: start
       - run: echo "Release E2E Tests"
       - uses: ./.github/workflows/actions/run-npm-cmd
         with:
-          script: test:e2e
+          script: test:e2e:ci
+      - uses: ./.github/workflows/actions/run-npm-cmd
+        with:
+          script: stop

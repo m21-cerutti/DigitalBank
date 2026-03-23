@@ -24,7 +24,9 @@
     "test:integration": "npm run test:api && jest ./tests/src/integration",
     "test:e2e:install": "python -m venv ./tests/src/e2e/.venv && node runner_e2e.js python -m pip install -r requirements.txt",
     "test:e2e:version": "node runner_e2e.js python -m pip --version",
-    "test:e2e": "node runner_e2e.js robot -d results/ ."
+    "test:e2e": "node runner_e2e.js robot -d results/ .",
+    "test:e2e:install:ci": "python -m pip install -r requirements.txt",
+    "test:e2e:ci": "robot -d results/ ./tests/src/e2e/"
   },
   "description": "Etude de cas 3 Examen Testeur Logiciel 2IAcademy ",
   "main": "app/index.html",
