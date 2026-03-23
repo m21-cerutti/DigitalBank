@@ -5,7 +5,7 @@ Pour une vision globale, voir le document ../docs/Pipeline.md.
 
 ---
 
-## 📋 Liste des Workflows
+## Liste des Workflows
 
 | Fichier workflow      | Type            | Déclencheur (`on:`)                                                                            | Jobs inclus                                                                                                                                  | Description                                                                                            |
 | --------------------- | --------------- | ---------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
@@ -21,7 +21,7 @@ Pour une vision globale, voir le document ../docs/Pipeline.md.
 
 ---
 
-# 🧠 Détail des Jobs – Tableau d’explications
+## Détail des Jobs – Tableau d’explications
 
 ## Tableau des Jobs
 
@@ -73,7 +73,7 @@ Pour une vision globale, voir le document ../docs/Pipeline.md.
 
 ---
 
-### Exemple d’utilisation d’un job PR
+## Exemple d’un job PR
 
 ```yaml
 jobs:

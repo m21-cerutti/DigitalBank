@@ -1,5 +1,3 @@
-<!-- omit from toc -->
-
 # Glossaire
 
 - [Général](#général)

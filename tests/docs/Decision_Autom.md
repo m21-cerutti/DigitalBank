@@ -1,5 +1,3 @@
-<!-- omit from toc -->
-
 # Quand un teste doit être automatisé ?
 
 - [Diagramme décision](#diagramme-décision)

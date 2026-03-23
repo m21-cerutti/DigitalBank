@@ -1,5 +1,3 @@
-<!-- omit from toc -->
-
 # Documentation GitFlow
 
 - [Présentation de Gitflow](#présentation-de-gitflow)
