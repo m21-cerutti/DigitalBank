@@ -38,7 +38,7 @@ runs:
         wget -q "https://edgedl.me.gvt1.com/edgedl/chrome/chrome-for-testing/$CHROMEDRIVER_VERSION/linux64/chromedriver-linux64.zip"
         unzip chromedriver-linux64.zip
         chmod +x chromedriver-linux64/chromedriver
-        sudo mv chromedriver-linux64/chromedriver /usr/local/bin/
+        sudo mv chromedriver-linux64/chromedriver /usr/bin/google-chrome
     - name: 'Check google chrome version'
       shell: bash
       run: google-chrome --version

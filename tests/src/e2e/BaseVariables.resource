@@ -3,10 +3,10 @@
 # Variables communes (SeleniumLibrary)
 
 *** Variables ***
-${APP_URL}                http://127.0.0.1:5173/
+${APP_URL}                http://localhost:5173/
 # ${BROWSER}                headlesschrome
 ${BROWSER}                chrome
-${HEADLESS}               ${false}
+${HEADLESS}               ${true}
 ${VIEWPORT_WIDTH}         1440
 ${VIEWPORT_HEIGHT}        900
 ${WAIT_SHORT}             1s

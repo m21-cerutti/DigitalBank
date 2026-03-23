@@ -7,7 +7,10 @@ Resource          BaseVariables.resource
 
 *** Keywords ***
 Suite Setup
-    ${options}  Evaluate  sys.modules['selenium.webdriver'].ChromeOptions()  sys
+    ${options}=  Evaluate  sys.modules['selenium.webdriver'].ChromeOptions()  sys, selenium.webdriver
+    IF    ${HEADLESS}
+        Call Method    ${options}    add_argument    --headless
+    END
     # Call Method    ${options}    add_argument      incognito
     Call Method    ${options}    add_argument      --disable-notifications
     Call Method    ${options}    add_argument      --disable-infobars
@@ -18,11 +21,9 @@ Suite Setup
     Call Method    ${options}    add_argument      --ignore-certificate-errors
     Call Method    ${options}    add_argument      --disable-gpu
     Call Method    ${options}    add_argument      --allow-insecure-localhost
+    Call Method    ${options}    add_argument      --disable-dev-shm-usag
     ${excludeSwitches}    Create List    enable-automation    enable-logging    disable-popup-blocking
     Call Method    ${options}    add_experimental_option    excludeSwitches    ${excludeSwitches}
-    IF    ${HEADLESS}
-        Call Method    ${options}    add_argument    --headless
-    END
     Open Browser    ${APP_URL}    ${BROWSER}    options=${options}
     Maximize Browser Window
     Set Selenium Timeout      ${WAIT_LONG}
