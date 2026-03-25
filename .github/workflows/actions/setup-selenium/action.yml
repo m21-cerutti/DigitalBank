@@ -78,4 +78,4 @@ runs:
         wget -q "https://storage.googleapis.com/chrome-for-testing-public/${{ inputs.chrome-version }}/linux64/chromedriver-linux64.zip"
         unzip chromedriver-linux64.zip
         chmod +x chromedriver-linux64/chromedriver
-        sudo mv chromedriver-linux64/chromedriver /usr/bin/google-chrome
+        sudo mv chromedriver-linux64/chromedriver /usr/bin/chromedriver
