@@ -8,6 +8,12 @@
     "bierner.markdown-mermaid",
     "ms-python.python",
     "redhat.vscode-yaml",
-    "bruno-api-client.bruno"
+    "bruno-api-client.bruno",
+    "dbaeumer.vscode-eslint",
+    "yzhang.markdown-all-in-one",
+    "ms-vscode.powershell",
+    "esbenp.prettier-vscode",
+    "ms-python.vscode-pylance",
+    "ms-python.debugpy"
   ]
 }
