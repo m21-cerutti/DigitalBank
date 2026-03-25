@@ -28,14 +28,13 @@ runs:
         sudo mkdir -p /etc/apt/sources.list.d
         sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
         sudo apt-get update
-        sudo apt-get -y install google-chrome-stable
+        sudo apt-get -y install google-chrome-stable=${{ inputs.chrome-version }}
     - name: Install ChromeDriver
       shell: bash
       run: |
         # Using specific ChromeDriver version for Chrome
-        CHROMEDRIVER_VERSION="${{ inputs.chrome-version }}"
-        echo "Installing ChromeDriver version: $CHROMEDRIVER_VERSION"
-        wget -q "https://edgedl.me.gvt1.com/edgedl/chrome/chrome-for-testing/$CHROMEDRIVER_VERSION/linux64/chromedriver-linux64.zip"
+        echo "Installing ChromeDriver version: ${{ inputs.chrome-version }}"
+        wget -q "https://edgedl.me.gvt1.com/edgedl/chrome/chrome-for-testing/${{ inputs.chrome-version }}/linux64/chromedriver-linux64.zip"
         unzip chromedriver-linux64.zip
         chmod +x chromedriver-linux64/chromedriver
         sudo mv chromedriver-linux64/chromedriver /usr/bin/google-chrome
