@@ -21,6 +21,26 @@ runs:
       with:
         path: ~/.cache/pip
         key: ${{ runner.os }}-pip-${{ hashFiles('**/requirement.txt') }}
+    - name: Install dependencies
+      shell: bash
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y \
+          unzip \
+          libnss3 \
+          libxss1 \
+          libasound2 \
+          fonts-liberation \
+          libatk-bridge2.0-0 \
+          libgtk-3-0 \
+          libx11-xcb1 \
+          libxcomposite1 \
+          libxdamage1 \
+          libxrandr2 \
+          xdg-utils \
+          lsb-release \
+          wget \
+          ca-certificates
     - name: Install Chrome
       shell: bash
       run: |
