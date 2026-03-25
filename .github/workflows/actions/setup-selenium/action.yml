@@ -31,7 +31,10 @@ runs:
     - name: 'Check google chrome version'
       shell: bash
       run: |
-        INSTALLED_VERSION=$(google-chrome --version)
+        OUTPUT=$(google-chrome --version)
+        echo "Raw output: $OUTPUT"
+
+        INSTALLED_VERSION=$(echo "$OUTPUT" | grep -oP '\d+\.\d+\.\d+\.\d+')
 
         echo "Expected: ${{ inputs.chrome-version }}"
         echo "Installed: ${INSTALLED_VERSION}"
