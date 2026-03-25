@@ -1,0 +1,13 @@
+{
+  "recommendations": [
+    "d-biehl.robotcode",
+    "mhutchie.git-graph",
+    "github.vscode-github-actions",
+    "orta.vscode-jest",
+    "bierner.markdown-emoji",
+    "bierner.markdown-mermaid",
+    "ms-python.python",
+    "redhat.vscode-yaml",
+    "bruno-api-client.bruno"
+  ]
+}

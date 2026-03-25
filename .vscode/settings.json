@@ -1,0 +1,4 @@
+{
+  "python.terminal.activateEnvironment": false,
+  "markdown.extension.toc.levels": "2..6"
+}

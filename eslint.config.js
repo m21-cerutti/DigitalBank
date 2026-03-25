@@ -1,12 +1,19 @@
-import js from '@eslint/js';
-import globals from 'globals';
-import prettier from 'eslint-config-prettier';
-import eslintPluginPrettier from 'eslint-plugin-prettier';
+const js = require('@eslint/js');
+const globals = require('globals');
+const prettier = require('eslint-config-prettier');
+const eslintPluginPrettier = require('eslint-plugin-prettier');
 
-export default [
+module.exports = [
   // Dossiers à ignorer globalement
   {
-    ignores: ['**/node_modules/**', '**/dist/**', '**/build/**', '**/coverage/**'],
+    ignores: [
+      '**/node_modules/**',
+      '**/dist/**',
+      '**/build/**',
+      '**/coverage/**',
+      '**/.venv/**',
+      '**/results/**',
+    ],
   },
 
   // Base JavaScript (ES modules par défaut)

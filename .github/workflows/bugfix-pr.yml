@@ -15,7 +15,7 @@ jobs:
     if: needs.call-guard.outputs.IS_BUGFIX == 'true'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - run: echo "Running PR workflow for bugfix/*"
 
   bugfix_linter_check_pr:
@@ -26,12 +26,26 @@ jobs:
     needs: bugfix_linter_check_pr
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
+      - uses: ./.github/workflows/actions/setup-node
       - run: echo "Bugfix PR Unit Tests"
+      - uses: ./.github/workflows/actions/run-npm-cmd
+        with:
+          script: test:unit
 
   bugfix_integration_tests_pr:
     needs: bugfix_unit_tests_pr
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
+      - uses: ./.github/workflows/actions/setup-node
       - run: echo "Bugfix PR Integration Tests"
+      - uses: ./.github/workflows/actions/run-npm-cmd
+        with:
+          script: start
+      - uses: ./.github/workflows/actions/run-npm-cmd
+        with:
+          script: test:api
+      - uses: ./.github/workflows/actions/run-npm-cmd
+        with:
+          script: stop
