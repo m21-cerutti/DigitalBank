@@ -24,11 +24,24 @@ runs:
     - name: Install Chrome
       shell: bash
       run: |
-        wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-        sudo mkdir -p /etc/apt/sources.list.d
-        sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
-        sudo apt-get update
-        sudo apt-get -y install google-chrome-stable=${{ inputs.chrome-version }}
+        wget https://storage.googleapis.com/chrome-for-testing-public/${{ inputs.chrome-version }}/linux64/chrome-linux64.zip
+        unzip chrome-linux64.zip
+        sudo mv chrome-linux64 /opt/chrome
+        sudo ln -sf /opt/chrome/chrome /usr/bin/google-chrome
+    - name: 'Check google chrome version'
+      shell: bash
+      run: |
+        INSTALLED_VERSION=$(google-chrome --version)
+
+        echo "Expected: ${{ inputs.chrome-version }}"
+        echo "Installed: ${INSTALLED_VERSION}"
+
+        if [ "${INSTALLED_VERSION}" != "${{ inputs.chrome-version }}" ]; then
+          echo "❌ ERROR: Chrome version mismatch"
+          exit 1
+        fi
+
+        echo "✅ Chrome version is correct"
     - name: Install ChromeDriver
       shell: bash
       run: |
@@ -38,6 +51,3 @@ runs:
         unzip chromedriver-linux64.zip
         chmod +x chromedriver-linux64/chromedriver
         sudo mv chromedriver-linux64/chromedriver /usr/bin/google-chrome
-    - name: 'Check google chrome version'
-      shell: bash
-      run: google-chrome --version
