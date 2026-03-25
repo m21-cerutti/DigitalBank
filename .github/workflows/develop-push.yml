@@ -22,7 +22,7 @@ jobs:
       name: develop
       deployment: false
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - uses: ./.github/workflows/actions/setup-node
       - run: echo "Develop Unit Tests"
       - uses: ./.github/workflows/actions/run-npm-cmd
@@ -36,7 +36,7 @@ jobs:
       name: develop
       deployment: false
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           ref: develop
       - run: echo "Develop Smoke Tests"
@@ -47,7 +47,7 @@ jobs:
     environment:
       name: develop
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           ref: develop
       - run: echo "Develop Deploy"
@@ -58,7 +58,7 @@ jobs:
     environment:
       name: develop
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           ref: develop
       - run: echo "Develop Sanity Check"
@@ -69,7 +69,7 @@ jobs:
     environment:
       name: develop
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - uses: ./.github/workflows/actions/setup-selenium
       - uses: ./.github/workflows/actions/setup-node
       - uses: ./.github/workflows/actions/run-npm-cmd
