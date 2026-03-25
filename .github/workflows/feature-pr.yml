@@ -14,7 +14,7 @@ jobs:
     if: needs.call-guard.outputs.IS_FEATURE == 'true'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - run: echo "Running PR workflow for feature/*"
 
   feature_linter_check_pr:
@@ -25,7 +25,7 @@ jobs:
     needs: feature_linter_check_pr
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - uses: ./.github/workflows/actions/setup-node
       - run: echo "Feature PR Unit Tests"
       - uses: ./.github/workflows/actions/run-npm-cmd
@@ -36,7 +36,7 @@ jobs:
     needs: feature_unit_tests_pr
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - uses: ./.github/workflows/actions/setup-node
       - run: echo "Feature PR Integration Tests"
       - uses: ./.github/workflows/actions/run-npm-cmd

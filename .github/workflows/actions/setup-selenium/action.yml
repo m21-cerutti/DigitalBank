@@ -8,7 +8,7 @@ inputs:
   chrome-version:
     description: 'Chrome version and driver version to install'
     required: false
-    default: '146.0.7680.153'
+    default: '146.0.7680.165'
 
 runs:
   using: 'composite'
@@ -21,24 +21,61 @@ runs:
       with:
         path: ~/.cache/pip
         key: ${{ runner.os }}-pip-${{ hashFiles('**/requirement.txt') }}
+    - name: Install dependencies
+      shell: bash
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y \
+          unzip \
+          libnss3 \
+          libxss1 \
+          fonts-liberation \
+          libatk-bridge2.0-0 \
+          libgtk-3-0 \
+          libx11-xcb1 \
+          libxcomposite1 \
+          libxdamage1 \
+          libxrandr2 \
+          libdbus-1-3\
+          libindicator7 \
+          libappindicator3-1 \
+          libxss1 \
+          openjdk-8-jre-headless \
+          xdg-utils \
+          xvfb \
+          lsb-release \
+          wget \
+          ca-certificates
     - name: Install Chrome
       shell: bash
       run: |
-        wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-        sudo mkdir -p /etc/apt/sources.list.d
-        sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
-        sudo apt-get update
-        sudo apt-get -y install google-chrome-stable
+        wget https://storage.googleapis.com/chrome-for-testing-public/${{ inputs.chrome-version }}/linux64/chrome-linux64.zip
+        unzip chrome-linux64.zip
+        sudo mv chrome-linux64 /opt/chrome
+        sudo ln -sf /opt/chrome/chrome /usr/bin/google-chrome
+    - name: 'Check google chrome version'
+      shell: bash
+      run: |
+        OUTPUT=$(google-chrome --version)
+        echo "Raw output: $OUTPUT"
+
+        INSTALLED_VERSION=$(echo "$OUTPUT" | grep -oP '\d+\.\d+\.\d+\.\d+')
+
+        echo "Expected: ${{ inputs.chrome-version }}"
+        echo "Installed: ${INSTALLED_VERSION}"
+
+        if [ "${INSTALLED_VERSION}" != "${{ inputs.chrome-version }}" ]; then
+          echo "❌ ERROR: Chrome version mismatch"
+          exit 1
+        fi
+
+        echo "✅ Chrome version is correct"
     - name: Install ChromeDriver
       shell: bash
       run: |
         # Using specific ChromeDriver version for Chrome
-        CHROMEDRIVER_VERSION="${{ inputs.chrome-version }}"
-        echo "Installing ChromeDriver version: $CHROMEDRIVER_VERSION"
-        wget -q "https://edgedl.me.gvt1.com/edgedl/chrome/chrome-for-testing/$CHROMEDRIVER_VERSION/linux64/chromedriver-linux64.zip"
+        echo "Installing ChromeDriver version: ${{ inputs.chrome-version }}"
+        wget -q "https://storage.googleapis.com/chrome-for-testing-public/${{ inputs.chrome-version }}/linux64/chromedriver-linux64.zip"
         unzip chromedriver-linux64.zip
         chmod +x chromedriver-linux64/chromedriver
-        sudo mv chromedriver-linux64/chromedriver /usr/bin/google-chrome
-    - name: 'Check google chrome version'
-      shell: bash
-      run: google-chrome --version
+        sudo mv chromedriver-linux64/chromedriver /usr/bin/chromedriver

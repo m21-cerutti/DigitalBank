@@ -16,6 +16,7 @@ Lire Nom Utilisateur Header
 
 Aller Onglet
     [Arguments]    ${onglet}   # dashboard | transfer | bills | security
+    Scroll Element Into View    ${TAB_DASHBOARD}
     Run Keyword If    '${onglet}'=='dashboard'    Click Element    ${TAB_DASHBOARD}
     ...    ELSE IF    '${onglet}'=='transfer'     Click Element    ${TAB_TRANSFER}
     ...    ELSE IF    '${onglet}'=='bills'        Click Element    ${TAB_BILLS}

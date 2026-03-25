@@ -1,5 +1,3 @@
-<!-- omit from toc -->
-
 # Gestion TNR
 
 - [Diagramme TNR](#diagramme-tnr)
