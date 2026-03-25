@@ -50,7 +50,7 @@ runs:
       run: |
         # Using specific ChromeDriver version for Chrome
         echo "Installing ChromeDriver version: ${{ inputs.chrome-version }}"
-        wget -q "https://storage.googleapis.com/chrome-for-testing-public/${{ inputs.chrome-version }}/linux64/chrome-linux64.zip"
+        wget -q "https://storage.googleapis.com/chrome-for-testing-public/${{ inputs.chrome-version }}/linux64/chromedriver-linux64.zip"
         unzip chromedriver-linux64.zip
         chmod +x chromedriver-linux64/chromedriver
         sudo mv chromedriver-linux64/chromedriver /usr/bin/google-chrome
