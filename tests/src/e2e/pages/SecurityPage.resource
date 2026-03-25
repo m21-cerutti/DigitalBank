@@ -30,7 +30,7 @@ Attendre Page Securite
 Basculer 2FA
     [Arguments]    ${enabled}=${true}
     Wait Until Element Is Visible     ${TOGGLE_2FA}
-    ${is_selected}=    Run Keyword And Return Status    Checkbox Should Be Selected    ${TOGGLE_2FA}
+    ${is_selected}=    Get Element Attribute    ${TOGGLE_2FA}    checked
     IF    ${enabled} and not ${is_selected}    
         Click Element    ${TOGGLE_2FA}
     ELSE IF    not ${enabled} and ${is_selected}    

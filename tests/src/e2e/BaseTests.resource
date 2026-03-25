@@ -49,4 +49,4 @@ Suite Teardown
     Close All Browsers
 
 Test Teardown
-    Capture Page Screenshot
+    Run Keyword If Test Failed    Capture Page Screenshot

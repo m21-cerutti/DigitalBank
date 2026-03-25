@@ -9,14 +9,6 @@ Resource    ../BaseVariables.resource
 Attendre Application
     Wait Until Element Is Visible    ${HEADER_USER_NAME}    ${WAIT_LONG}
     Wait Until Element Is Visible    ${TAB_DASHBOARD}      ${WAIT_MEDIUM}
-    
-    # Page Should Contain Element    xpath=//button[@data-testid="tab-security"]
-    # ${display}=    Execute Javascript
-    # ...    return window.getComputedStyle(document.querySelector('[data-testid="tab-security"]')).display;
-    # Log To Console    ${display}
-    # Execute Javascript    document.body.style.zoom = "100%"
-    # Execute Javascript    window.resizeTo(1920,1080)
-    Capture Page Screenshot
 
 Lire Nom Utilisateur Header
     ${name}=    Get Text    ${HEADER_USER_NAME}
